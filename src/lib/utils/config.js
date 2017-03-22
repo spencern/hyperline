@@ -13,6 +13,14 @@ function mergeColorConfigs(defaultColor, userColor = false) {
   return userColor
 }
 
+function mergeWidthConfigs(defaultWidth, userWidth = false) {
+  if (!userWidth || !userWidth.match(/[0-9]+px/)) {
+    return defaultWidth
+  }
+
+  return userWidth
+}
+
 function mergePluginConfigs(defaultPlugins, userPlugins, notify) {
   if (!userPlugins) {
     return defaultPlugins
@@ -74,6 +82,7 @@ export function mergeConfigs(defaultConfig, userConfig = false, notify) {
 
   return {
     color: mergeColorConfigs(defaultConfig.color, userConfig.color),
+    width: mergeWidthConfigs(defaultConfig.minWidth, userConfig.minWidth),
     plugins: mergePluginConfigs(defaultConfig.plugins, userConfig.plugins, notify)
   }
 }

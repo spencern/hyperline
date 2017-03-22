@@ -1,10 +1,13 @@
 export default (React) => {
   const PluginWrapper = ({
     color,
-    children
+    children,
+    minWidth
   }) => {
     let style = {
       display: 'flex',
+      flexBasis: 'auto',
+      flexGrow: '1',
       flexShrink: '0',
       alignItems: 'center',
       paddingLeft: '7px',
@@ -21,6 +24,10 @@ export default (React) => {
       style.color = color
     }
 
+    if (minWidth) {
+      style.minWidth = minWidth
+    }
+
     return (
       <div style={style}>
         {children}
@@ -30,7 +37,8 @@ export default (React) => {
 
   PluginWrapper.propTypes = {
     color: React.PropTypes.string,
-    children: React.PropTypes.any
+    children: React.PropTypes.any,
+    minWidth: React.PropTypes.string
   }
 
   return PluginWrapper

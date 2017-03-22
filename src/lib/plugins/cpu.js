@@ -67,7 +67,7 @@ export function componentFactory( React, colors ) {
         this.setState({
           cpuAverage: this.calculateCpuUsage()
         })
-      }, 500)
+      }, 1000)
     }
 
     componentWillUnmount() {
@@ -130,9 +130,10 @@ export function componentFactory( React, colors ) {
       const avg = this.state.cpuAverage.toFixed(0)
       const PluginWrapper = pluginWrapperFactory(React)
       const fillColor = colors[this.getColor(this.state.cpuAverage)]
+      const minWidth = this.props.options.minWidth;
 
       return (
-        <PluginWrapper color={fillColor}>
+        <PluginWrapper color={fillColor} minWidth={minWidth}>
           <PluginIcon fillColor={fillColor} /> {avg}%
         </PluginWrapper>
       )
@@ -173,5 +174,6 @@ export const defaultOptions = {
     high: 'lightRed',
     moderate: 'lightYellow',
     low: 'lightGreen'
-  }
+  },
+  minWidth: '60px'
 }
